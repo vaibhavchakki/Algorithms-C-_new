@@ -31,8 +31,8 @@ int main(int argc, char** argv) {
   int n = 999; 
   int maxNum = 1;
 
-  for (int i = n; i > 1; i--) {
-    for (int j = n; j > 1; j--) {
+  for (int i = 100; i <= n; i++) {
+    for (int j = i; j <= n; j++) {
       if (isPalindrome(i * j)) {
         maxNum = (i * j) > maxNum ? i * j: maxNum;
       }
