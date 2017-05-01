@@ -5,7 +5,7 @@ typedef unsigned int uint32;
 
 uint32 fib1(uint32 n) {
     if (n < 2) {
-        return 1;
+        return n;
     }
     return fib1(n - 1) + fib1(n - 2);
 }
@@ -13,7 +13,7 @@ uint32 fib1(uint32 n) {
 uint32 fib2(uint32 n) {
     uint32 sum = 1, prev_sum = 1;
     if (n < 2) {
-        return sum;
+        return n;
     }
     for (int i = 2; i <= n; i++) {
 	uint32 t = sum;
