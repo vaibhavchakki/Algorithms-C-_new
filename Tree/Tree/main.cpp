@@ -62,6 +62,9 @@ void top_view(Node * root)
     }
 }
 
+/*
+ * insert node in binary tree
+ */
 void insert(Node** root, int d) {
     
     Node* n = *root;
@@ -79,8 +82,11 @@ void insert(Node** root, int d) {
     *root = n;
 }
 
+/*
+ * This function is to print the Ancestors based on the node
+ * http://www.geeksforgeeks.org/print-ancestors-of-a-given-node-in-binary-tree/
+ */
 bool printAncestors(Node* root, int target) {
-    
     if (NULL == root) {
         return false;
     }
@@ -97,6 +103,34 @@ bool printAncestors(Node* root, int target) {
     
     return false;
 }
+
+/*
+ * Root to leaf path sum equal to a given number Given a binary tree and a 
+ * number, return true if the tree has a root-to-leaf path such that adding
+ * up all the values along the path equals the given number. Return false if
+ * no such path can be found.
+ * http://www.geeksforgeeks.org/root-to-leaf-path-sum-equal-to-a-given-number/
+ */
+bool rootToLeafPathSum(Node* root, int target) {
+    
+    if (NULL == root) {
+        return (target == 0);
+    }
+    
+    int sum = target - root->data;
+    
+    if (!root->left && !root->right && (sum == 0) ) {
+        return true;
+    }
+    
+    if ( rootToLeafPathSum(root->left, sum) ||
+         rootToLeafPathSum(root->right, sum) ) {
+        return true;
+    }
+    
+    return false;
+}
+
 
 int main(int argc, const char * argv[]) {
     
