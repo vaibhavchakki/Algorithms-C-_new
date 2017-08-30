@@ -13,6 +13,8 @@ struct Node {
     int data;
     Node* left;
     Node* right;
+    
+    Node(int d):data(d), left(NULL), right(NULL) {}
 };
 
 void preOrder(Node *root) {
@@ -60,7 +62,54 @@ void top_view(Node * root)
     }
 }
 
+void insert(Node** root, int d) {
+    
+    Node* n = *root;
+    
+    if (NULL == n) {
+        n = new Node(d);
+    }
+    else if (n->data > d) {
+        insert(&n->left, d);
+    }
+    else {
+        insert(&n->right, d);
+    }
+    
+    *root = n;
+}
+
+bool printAncestors(Node* root, int target) {
+    
+    if (NULL == root) {
+        return false;
+    }
+    
+    if (root->data == target) {
+        return true;
+    }
+    
+    if (printAncestors(root->left, target) ||
+        printAncestors(root->right, target)) {
+        cout << root->data << endl;
+        return true;
+    }
+    
+    return false;
+}
+
 int main(int argc, const char * argv[]) {
+    
+    Node* root = NULL;
+    insert(&root, 1);
+    insert(&root, 4);
+    insert(&root, 5);
+    insert(&root, 7);
+    insert(&root, 9);
+    
+    inOrder(root);
+    
+    printAncestors(root, 7);
 
     return 0;
 }
