@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -131,6 +132,49 @@ bool rootToLeafPathSum(Node* root, int target) {
     return false;
 }
 
+/*
+ * Given a binary tree, print level order traversal in a way that 
+ * nodes of all levels are printed in separate lines.
+ * http://www.geeksforgeeks.org/print-level-order-traversal-line-line/
+ */
+void printLevelOrder(Node* root) {
+    
+    if (NULL == root) {
+        return;
+    }
+    
+    queue <Node* > q;
+    q.push(root);
+    
+    while (1) {
+        
+        size_t nodeCount = q.size();
+        
+        if (nodeCount == 0) {
+            break;
+        }
+        
+        while (nodeCount > 0) {
+            Node *n = q.front();
+            cout << n->data << " ";
+            q.pop();
+            
+            if (n->left) {
+                q.push(n->left);
+            }
+            
+            if (n->right) {
+                q.push(n->right);
+            }
+            
+            nodeCount--;
+        }
+        
+        cout << endl;
+        
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     
@@ -141,9 +185,18 @@ int main(int argc, const char * argv[]) {
     insert(&root, 7);
     insert(&root, 9);
     
-    inOrder(root);
+    //inOrder(root);
     
-    printAncestors(root, 7);
+    //printAncestors(root, 7);
+    
+    Node *root1 = new Node(1);
+    root1->left = new Node(2);
+    root1->right = new Node(3);
+    root1->left->left = new Node(4);
+    root1->left->right = new Node(5);
+    root1->right->right = new Node(6);
+    printLevelOrder(root1);
+    
 
     return 0;
 }
