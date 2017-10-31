@@ -50,6 +50,17 @@ bool isOneBitCharacter(vector<int>& bits) {
   return helper(bits, 0);
 }
 
+bool isOneBitCharacter_solution2(vector<int>& bits) {
+  int i = 0;
+  int len = bits.size();
+  while (i < len - 1) {
+    if (bits[i] == 0) i++;
+    else i += 2;
+  }
+
+  return i == (len - 1);
+}
+
 int main(int argc, const char** argv) {
   return 0;
 }
